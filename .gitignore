@@ -1,4 +1,8 @@
+.env
 jobs.csv
 emails.txt
-.env
+out.txt
 __pycache__/
+*.pyc
+venv/
+.venv/

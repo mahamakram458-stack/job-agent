@@ -55,6 +55,9 @@ WEB_SEARCHES = ["wordpress developer", "web developer", "frontend developer"]
 CSV_FILE = "jobs.csv"
 EMAILS_FILE = "emails.txt"
 
+# jobs.csv ke columns (Score aur Reason match.py bharta hai)
+COLUMNS = ["Job", "Company", "Link", "Applied?", "Score", "Reason"]
+
 # =====================================================
 #          Neeche code hai, ise badalne ki zaroorat nahi
 # =====================================================
@@ -228,12 +231,14 @@ for job in all_jobs:
             "Company": job["company_name"],
             "Link": job["url"],
             "Applied?": "nahi",
+            "Score": "",
+            "Reason": "",
         }
         new_count += 1
 
 try:
     with open(CSV_FILE, "w", encoding="utf-8-sig", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=["Job", "Company", "Link", "Applied?"])
+        writer = csv.DictWriter(f, fieldnames=COLUMNS, extrasaction="ignore")
         writer.writeheader()
         writer.writerows(rows.values())
     print(f"\njobs.csv update: {new_count} nayi jobs, total {len(rows)}")
